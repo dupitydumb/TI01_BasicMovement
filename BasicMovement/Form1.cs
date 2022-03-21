@@ -17,8 +17,17 @@ namespace BasicMovement
             Atas, Bawah, Kanan, Kiri
         }
         //Deklarasi variabel X dan Y
-        private int _x;
-        private int _y;
+        //private int _x;
+        //private int _y;
+        //private int _z;
+
+        // Variabel Point Segitiga
+        private int _1x;
+        private int _1y;
+        private int _2x;
+        private int _2y;
+        private int _3x;
+        private int _3y;
         private Position _objPosition;
 
         public Form1()
@@ -26,15 +35,34 @@ namespace BasicMovement
 
             InitializeComponent();
             // Initial location
-            _x = 50;
-            _y = 50;
+            //_x = 150;
+            //_y = 100;
+
+            // Posisi titik segitaga
+            _1x = 100;
+            _1y = 180;
+            _2x = 300;
+            _2y = 180;
+            _3x = 200;
+            _3y = 70;
+
 
         }
+
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // Object Ractangle Di posisi _x _y dengan ukuran 200
-            e.Graphics.FillRectangle(Brushes.DarkMagenta, _x, _y, 100, 100);
+            // e.Graphics.FillRectangle(Brushes.DarkMagenta, _x, _y, 100, 100);
+
+            //Point Array Segitiga
+            Point p1 = new Point(_1x, _1y);
+            Point p2 = new Point(_2x, _2y);
+            Point p3 = new Point(_3x, _3y);
+
+            Point[] pointArray = { p1, p2, p3, };
+
+            e.Graphics.FillPolygon(Brushes.DarkMagenta, pointArray);
 
 
         }
@@ -48,20 +76,29 @@ namespace BasicMovement
             //}
             if (_objPosition == Position.Kanan)
             {
-                _x += 3;
+                
+                _1x += 3;
+                _2x += 3;
+                _3x += 3;
             }
             else if (_objPosition == Position.Kiri)
             {
-                _x -= 3;
+                _1x -= 3;
+                _2x -= 3;
+                _3x -= 3;
 
             }
             else if (_objPosition == Position.Atas)
             {
-                _y += 3;
+                _1y -= 3;
+                _2y -= 3;
+                _3y -= 3;
             }
             else if (_objPosition == Position.Bawah)
             {
-                _y -= 3;
+                _1y += 3;
+                _2y += 3;
+                _3y += 3;
             }
 
             Invalidate();
@@ -69,20 +106,20 @@ namespace BasicMovement
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.A)
             {
                 _objPosition = Position.Kiri;
 
             }
-            else if (e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.D)
             {
                 _objPosition = Position.Kanan;
             }
-            else if (e.KeyCode == Keys.Up)
+            else if (e.KeyCode == Keys.W)
             {
                 _objPosition = Position.Atas;
             }
-            else if (e.KeyCode == Keys.Down)
+            else if (e.KeyCode == Keys.S)
             {
                 _objPosition = Position.Bawah;
             }
